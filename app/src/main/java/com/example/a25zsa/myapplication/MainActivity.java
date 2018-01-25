@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity{
         timePicker3 = (TimePicker)findViewById(R.id.timePicker3);
         switch1 = (Switch)findViewById(R.id.switch1);
         vibrator = (Vibrator) getSystemService( Context.VIBRATOR_SERVICE );
-        
+
 
         counter = new Thread(){
             public void run(){
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity{
         currentTime = getCurrentTime();
         alarmTime = getAlarmTime();
         switchState = getSwitchState();
-        textView.setText("Current Time: " + currentTime + "\n\nAlarm Time: " + alarmTime);
+        textView.setText("Current Time: " + currentTime + "\n\nAlarm Time  : " + alarmTime);
     }
 
     public boolean getSwitchState(){
@@ -83,13 +83,13 @@ public class MainActivity extends AppCompatActivity{
         Integer hour = timePicker3.getCurrentHour();
         Integer min = timePicker3.getCurrentMinute();
         String alarmDay = "AM";
-        if(hour > 12){
-            hour -= 12;
-        }
         if(hour >= 12){
             alarmDay = "PM";
         }
-        return hour + ":" + ((min < 10) ? ("0" + min):min) + " " + alarmDay;
+        if(hour > 12){
+            hour -= 12;
+        }
+        return ((hour < 10) ? ("0" + hour):hour) + ":" + ((min < 10) ? ("0" + min):min) + " " + alarmDay;
     }
 
     public String getCurrentTime(){
